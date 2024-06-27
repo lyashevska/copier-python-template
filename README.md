@@ -6,3 +6,6 @@ This repository is a migration from the original cookiecutter-based template htt
 Motivation: 
 - Code lifecycle management (When the template evolves, let users update their projects);
 - Keep statistics of the number of users.
+
+Also refer to [this](https://github.com/NLeSC/python-template/issues/348) issue.
+
