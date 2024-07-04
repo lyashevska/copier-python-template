@@ -2,7 +2,7 @@
 
 # copier-python-template
 
-This repository is a migration from the original cookiecutter-based template https://github.com/NLeSC/python-template to copier.
+This repository is a migration from the original [cookiecutter](https://github.com/cookiecutter/cookiecutter)-based template https://github.com/NLeSC/python-template to [copier](https://github.com/copier-org/copier).
 Motivation: 
 - Code lifecycle management (when the template evolves, users can update their projects);
 - Keep statistics of the number of users.
