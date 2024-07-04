@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = u"{{ package_name }}"
-copyright = u"{% now "local", "%Y" %}, {{ copyright_holder }}"
+copyright = u"{{ '%Y-%m-%d %H:%M:%S' | strftime }}, {{ copyright_holder }}"
 author = u"{{ full_name.replace('\"', '\\\"') }}"
 
 # The version info for the project you're documenting, acts as replacement for
