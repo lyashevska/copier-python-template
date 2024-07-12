@@ -3,12 +3,26 @@
 directory_name:
   type: str
   default: my-python-project
+  help: Enter the name of the directory where the project will be created.
+  validator: >-
+        {% if not (directory_name | regex_search('^[a-z0-9\-]+$')) %}
+        directory_name must be lowercase, and can only contain letters, digits, and hyphens.
+        {% endif %}
 package_name:
   type: str
   default: my_python_package
+  help: Enter the name of the Python package.
+  validator: >-
+        {% if not (package_name | regex_search('^[a-z][a-z0-9\_]+$')) %}
+        package_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
+        {% endif %}
 package_short_description:
   type: str
   default: Short description of package
+  # validator: >-
+  #       {% if '"' in package_short_description %}
+  #       package_short_description must not contain unescaped double quotes. Use \\" for double quotes.
+  #       {% endif %}
 keyword1:
   type: str
   default: keyword1
@@ -35,6 +49,11 @@ license:
 full_name:
   type: str
   default: Jane Smith
+  help: Enter your full name.
+  # validator: >-
+  #       {% if '"' in full_name %}
+  #       full_name must not contain unescaped double quotes. Use \\" for double quotes.
+  #       {% endif %}
 email:
   type: str
   default: yourname@esciencecenter.nl
