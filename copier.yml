@@ -62,8 +62,17 @@ copyright_holder:
   default: Netherlands eScience Center
 code_of_conduct_email:
   type: str
-  default: "{{ email }}"
+  default: {{ email }}
 
 _subdirectory: template
+
+repository:
+  default: git@github.com:{{ github_organization }}/{{ directory_name }}
+  when: false
+
+repository_url:
+  default: https://github.com/{{ github_organization }}/{{ directory_name }}
+  when: false
+
 
 # Optional questions
