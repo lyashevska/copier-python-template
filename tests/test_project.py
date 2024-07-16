@@ -42,15 +42,16 @@ def project_env_bin_dir(tmp_path_factory):
 
 
 @pytest.fixture(scope='session')
-def baked_with_development_dependencies(cookies_session, project_env_bin_dir):
-    result = cookies_session.bake()
-    assert result.exit_code == 0
+def baked_with_development_dependencies(tmp_path_factory, project_env_bin_dir):
+    project = run_copy(src_path=str(here()), dst_path=str(tmp_path_factory.mktemp('projects')), defaults=True)
+    project_dir = project.dst_path
+
     bin_dir = project_env_bin_dir
-    latest_pip_output = run([f'{bin_dir}python', '-m', 'pip', 'install', '--upgrade', 'pip', 'setuptools'], result.project_path)
+    latest_pip_output = run([f'{bin_dir}python', '-m', 'pip', 'install', '--upgrade', 'pip', 'setuptools'], project_dir)
     assert latest_pip_output.returncode == 0
-    pip_output = run([f'{bin_dir}python', '-m', 'pip', 'install', '--editable', '.[dev]'], result.project_path)
+    pip_output = run([f'{bin_dir}python', '-m', 'pip', 'install', '--editable', '.[dev]'], project_dir)
     assert pip_output.returncode == 0
-    return result.project_path
+    return project_dir
 
 
 def test_pytest(baked_with_development_dependencies, project_env_bin_dir):
@@ -168,7 +169,7 @@ def test_ruff_check(baked_with_development_dependencies, project_env_bin_dir):
     project_dir = baked_with_development_dependencies
     bin_dir = project_env_bin_dir
 
-    result = run([f'{bin_dir}ruff', '.'], project_dir)
+    result = run([f'{bin_dir}ruff', 'check', '.'], project_dir)
     assert result.returncode == 0
     assert '' in result.stdout
 
