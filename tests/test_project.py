@@ -4,18 +4,19 @@ import sys
 from sys import platform
 from typing import Sequence
 
+from pyprojroot.here import here
+from copier import run_copy
 import pytest
 
 IS_WINDOWS = platform.startswith('win')
 
 
-def test_project_folder(cookies):
-    project = cookies.bake()
+def test_project_folder(copie):
+    project = copie.copy()
 
     assert project.exit_code == 0
     assert project.exception is None
-    assert project.project_path.name == 'my-python-project'
-    assert project.project_path.is_dir()
+    assert project.project_dir.is_dir()
 
 
 def run(args: Sequence[str], dirpath: os.PathLike) -> subprocess.CompletedProcess:
