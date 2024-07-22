@@ -16,3 +16,5 @@ To generate a project from the template:
 pip install copier
 copier copy path/to/project/template path/to/destination
 ```
+## UPDATE
+Moved to: https://github.com/NLeSC/python-template. 
